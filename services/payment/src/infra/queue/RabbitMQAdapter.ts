@@ -12,7 +12,7 @@ export default class RabbitMQAdapter implements Queue {
   }
 
   async publish(queueName: string, data: any): Promise<void> {
-    await this._channel.assertQueue(queueName, { durable: true });
+    this._channel.assertQueue(queueName, { durable: true });
     this._channel.sendToQueue(queueName, Buffer.from(JSON.stringify(data)));
   }
 
